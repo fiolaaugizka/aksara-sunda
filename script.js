@@ -519,8 +519,26 @@ document.querySelectorAll("[data-scroll]").forEach(link => {
 });
 
 /* MOBILE MENU */
-menuToggle.addEventListener("click", () => {
-  mobileNav.classList.toggle("hidden");
+window.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  const header = document.querySelector(".header");
+
+  if (!menuToggle || !mobileNav) return;
+
+  // Toggle menu
+  menuToggle.addEventListener("click", () => {
+    header.classList.toggle("nav-open");
+  });
+
+  // Tutup menu saat klik link
+  document.querySelectorAll("[data-scroll]").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      scrollToSection(link.dataset.scroll);
+      header.classList.remove("nav-open");
+    });
+  });
 });
 
 /* =====================
