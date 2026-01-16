@@ -1085,6 +1085,7 @@ function susunKata() {
             .find(v => kata.slice(i).startsWith(v));
 
           if (vokalSetelah && vokalMap[vokalSetelah]) {
+            // Hanya tambahkan rarangken jika memang ada mapping
             const r = getRarangken(vokalMap[vokalSetelah]);
             if (r) {
               const img = document.createElement("img");
@@ -1102,7 +1103,7 @@ function susunKata() {
 
       /* === VOKAL BERDIRI (i, u, e, é, eu, o) === */
       const vokalKey = Object.keys(vokalMap)
-        .filter(v => v !== "a") // A tidak diproses di sini
+        .filter(v => v !== "a") // A diproses via rarangken
         .sort((a, b) => b.length - a.length)
         .find(v => sisa.startsWith(v));
 
