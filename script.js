@@ -1004,21 +1004,21 @@ const KONSONAN_SET = [
 function getKonsonan(key) {
   return cardsData.find(c =>
     c.type === "konsonan" &&
-    c.frontImg.toLowerCase().endsWith(`_${key}.png`)
+    c.frontImg.toLowerCase().includes(`_${key}`)
   );
 }
 
 function getVokal(key) {
   return cardsData.find(c =>
     c.type === "vokal" &&
-    c.frontImg.toLowerCase().endsWith(`_${key}.png`)
+    c.frontImg.toLowerCase().includes(`_${key}`)
   );
 }
 
 function getRarangken(name) {
   return cardsData.find(c =>
     c.type === "rarangken" &&
-    c.frontImg.toLowerCase().endsWith(`_${name}.png`)
+    c.frontImg.toLowerCase().includes(`_${name}`)
   );
 }
 
@@ -1038,7 +1038,7 @@ function susunKata() {
 
   /* === PETA VOKAL → RARANGKEN === */
   const vokalMap = {
-    a: null,
+    a: "pamaeh",
     i: "panghulu",
     u: "panyiku",
     e: "pamepet",
