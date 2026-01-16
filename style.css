@@ -1181,20 +1181,6 @@ body.quiz-lock {
   }
 }
 
-@media (max-width: 768px) {
-  /* FORCE MOBILE BACKGROUND */
-  #cover {
-    background-image: url("img/bg_5_mobile.png") !important;
-  }
-
-  .quiz-page {
-    background-image: url("img/bg_3_mobile.png") !important;
-  }
-
-  .susun-page {
-    background-image: url("img/bg_4_mobile.png") !important;
-  }
-
   /* FIX CEPOT POSITION */
   .cepot-wrapper {
     min-height: unset !important;
@@ -1253,6 +1239,39 @@ body.quiz-lock {
   .header.nav-open .mobile-nav {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .cepot-wrapper {
+    pointer-events: none;
+  }
+}
+
+/* ===============================
+   FINAL MOBILE BACKGROUND FIX
+================================ */
+@media (max-width: 768px) {
+
+  #cover {
+    background-image: url("img/bg_hp1.png") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+  }
+
+  .quiz-page {
+    background-image: url("img/bg_hp2.png") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .susun-page {
+    background-image: url("img/bg_hp2.png") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 }
 
