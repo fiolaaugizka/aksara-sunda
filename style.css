@@ -91,10 +91,6 @@ body {
 /* =====================
    MOBILE NAV
 ===================== */
-/* ----- MOBILE NAV / TOGGLE ----- */
-  .desktop-nav { display: none; }
-  .menu-toggle { display: block; }
-
 .menu-toggle {
   display: none;
   font-size: 2rem;
@@ -124,11 +120,6 @@ body {
   .header.nav-open {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .header.nav-open .logo,
-  .header.nav-open .menu-toggle {
-    display: none;
   }
 
   .mobile-nav a,
@@ -200,7 +191,24 @@ body {
   .menu-toggle {
     display: block;
   }
+   .desktop-nav { display: none; }
+  .menu-toggle { display: block; }
+   .header.nav-open .logo,
+.header.nav-open .menu-toggle {
+  display: none;
+}
 
+   .mobile-nav {
+    display: none; /* tertutup default */
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .header.nav-open .mobile-nav {
+    display: flex;
+  }
+   
   .cepot-wrapper {
     width: 150px;
     height: 150px;
@@ -503,8 +511,8 @@ body {
 }
 
 #cepotImg {
-  width: clamp(120px, 20vw, 180px); /* responsive */
-  height: auto;                      /* jaga proporsi */
+  width: clamp(120px, 20vw, 150px); /* responsive */
+  height: auto;                      
   object-fit: contain;
   display: block;
   transition: transform 0.2s ease, width 0.2s ease;
@@ -512,8 +520,8 @@ body {
 
 #cepotImg.happy,
 #cepotImg.sad {
-  width: clamp(140px, 22vw, 180px); /* sedikit lebih besar saat ekspresi berubah */
-  height: auto;
+  width: clamp(140px, 25vw, 160px);
+  height: auto; /* biar proporsional */
 }
 
 /* Gambar Cepot */
@@ -1066,8 +1074,8 @@ body.quiz-lock {
 
 /* KARTU AKSARA UTAMA */
 .susun-card {
-  width: clamp(60px, 15%, 130px)
-   max-width: 100%
+  width: clamp(60px, 15%, 130px);
+   max-width: 100%;
   height: auto;
   padding: 14px;
   background: #ffffff;
