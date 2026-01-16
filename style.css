@@ -35,9 +35,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-
   background: #6b3f1d;
-
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -46,11 +44,11 @@ body {
 .logo {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #fff;
 }
 
 /* =====================
-   NAVIGATION
+   DESKTOP NAV
 ===================== */
 .desktop-nav a {
   text-decoration: none;
@@ -65,67 +63,59 @@ body {
   background: var(--yellow-soft);
 }
 
-/* BUTTON HEADER */
+/* HEADER BUTTON DESKTOP */
 #playBtnHeader {
   margin-left: 12px;
   padding: 8px 18px;
   border-radius: 24px;
   border: none;
-
   background: #e6b97a;
   color: #fff;
-
   font-family: "Baloo 2", "Comic Sans MS", sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
-
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #playBtnHeader:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 14px (#ffe4b5);
+  box-shadow: 0 6px 14px #ffe4b5;
 }
 
 /* =====================
-   MOBILE NAV
+   MOBILE NAVIGATION
 ===================== */
 .menu-toggle {
   display: none;
   font-size: 2rem;
   cursor: pointer;
   color: #e6b97a;
-   z-index: 1001;
+  z-index: 1001;
 }
 
 .mobile-nav {
   display: none;
   flex-direction: column;
-   gap: 12px;
-    padding: 20px;
-    width: 100%;
-  background: linear-gradient(
-    180deg,
-    var(--brown-soft),
-    var(--yellow-soft)
-  );
+  gap: 12px;
+  padding: 20px;
+  width: 100%;
+  background: linear-gradient(180deg, var(--brown-soft), var(--yellow-soft));
 }
 
 .header.nav-open .mobile-nav {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+}
 
-  .header.nav-open {
-    flex-direction: column;
-    align-items: stretch;
-  }
+.header.nav-open {
+  flex-direction: column;
+  align-items: stretch;
+}
 
-  .mobile-nav a,
-  .mobile-play-btn {
-    text-align: center;
-    width: 100%;
+.mobile-nav a,
+.mobile-play-btn {
+  text-align: center;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   margin-bottom: 6px;
@@ -139,20 +129,12 @@ body {
   padding: 14px 28px;
   border-radius: 32px;
   border: none;
-
   font-family: "Baloo 2", "Comic Sans MS", sans-serif;
   font-size: 1rem;
   font-weight: 800;
-
-  background: linear-gradient(
-    135deg,
-    #6b3f1d,
-    #e6b97a
-  );
-
+  background: linear-gradient(135deg, #6b3f1d, #e6b97a);
   color: #fff;
   cursor: pointer;
-
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -182,58 +164,78 @@ body {
 }
 
 /* =====================
-   RESPONSIVE
+   CEPOT GUIDE RESPONSIVE FIX
 ===================== */
-@media (max-width: 768px) {
-  .desktop-nav {
-    display: flex !important;
-  }
-  .menu-toggle {
-    display: block;
-  }
-   .desktop-nav { display: none; }
-  .menu-toggle { display: block; }
-   .header.nav-open .logo,
-.header.nav-open .menu-toggle {
-  display: none;
+
+/* Desktop default */
+.cepot-wrapper {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 200px;
+  height: auto;
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-   .mobile-nav {
-    display: none; /* tertutup default */
-    flex-direction: column;
-    gap: 12px;
-    padding: 20px;
-  }
+.cepot-img,
+#cepotImg {
+  width: 200px;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
 
-  .header.nav-open .mobile-nav {
-    display: flex;
-  }
-   
+.cepot-wrapper .bubble {
+  font-size: 1.1rem;
+  max-width: 260px;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* =====================
+   TABLET / MOBILE <= 768px
+===================== */
+@media (max-width: 768px) {
+  .desktop-nav { display: none; }
+  .menu-toggle { display: block; }
+
   .cepot-wrapper {
-    width: 150px;
-    height: 150px;
-    right: 10px;
+    width: 120px;
     bottom: 10px;
+    right: 10px;
+    align-items: flex-end;
   }
 
-  .bubble-game {
-    font-size: 0.8rem;
+  .cepot-img,
+  #cepotImg {
+    width: 90px;
+    max-width: 90px;
+    height: auto;
   }
 
-  .cepot-img {
-    width: 160px;
-    max-width: 160px;
+  .cepot-wrapper .bubble {
+    font-size: 0.75rem;
+    max-width: 150px;
   }
 
-  .cards-container {
-    grid-template-columns: repeat(3, 1fr); /* MOBILE: 3 jajar */
-  }
-
+  /* Header play button responsive */
   #playBtnHeader {
     padding: 8px 14px;
     font-size: 0.85rem;
   }
 
+  /* Cards grid mobile */
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Background & cover */
   #cover,
   #cards,
   .quiz-page,
@@ -245,46 +247,29 @@ body {
     background-position: center center;
     background-size: contain;
     background-attachment: scroll;
-    /* memberi ruang supaya konten tidak nutup foto */
-    padding-top: 45vh;
+    padding-top: 45vh; /* beri ruang supaya konten tidak nutup foto */
   }
 }
 
-@media (min-width: 1024px) {
+/* =====================
+   HANDPHONE KECIL <= 480px
+===================== */
+@media (max-width: 480px) {
   .cepot-wrapper {
-    width: 200px;
-    right: 24px;
-    bottom: 24px;
-  }
-
-  .cepot-img {
-    width: 200px;
-    max-width: 200px;
-  }
-
-  .cepot-wrapper .bubble {
-    font-size: 1.1rem;
-    max-width: 260px;
-  }
-}
-
-@media (max-width: 768px) {
-  .cepot-wrapper {
-    width: 110px;
-    height: auto;
-    right: 10px;
+    width: 100px;
     bottom: 10px;
-    min-height: unset;
+    right: 10px;
   }
 
-  .cepot-img {
-    width: 110px;
-    max-width: 110px;
+  .cepot-img,
+  #cepotImg {
+    width: 70px;
+    height: auto;
   }
 
   .cepot-wrapper .bubble {
-    font-size: 0.8rem;
-    max-width: 180px;
+    font-size: 0.7rem;
+    max-width: 130px;
   }
 }
 
@@ -489,16 +474,21 @@ body {
   transform: scale(1.05);
 }
 
-/* CEPOT GUIDE */
+/* =========================
+   CEPOT GUIDE FIXED
+========================= */
 .cepot-wrapper {
   position: fixed;
   right: 16px;
   bottom: 16px;
-  width: 180px;
-  height: 180px;
-  min-height: 260px; /* cegah loncat saat ganti ekspresi */
+  width: 180px;      /* desktop default */
+  height: auto;      /* biar proporsional */
+  min-height: unset;  /* hapus min-height agar tidak loncat */
   z-index: 50;
   pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #cepotWrapper {
@@ -511,8 +501,8 @@ body {
 }
 
 #cepotImg {
-  width: clamp(120px, 20vw, 150px); /* responsive */
-  height: auto;                      
+  width: clamp(120px, 15vw, 150px); /* desktop responsive */
+  height: auto;
   object-fit: contain;
   display: block;
   transition: transform 0.2s ease, width 0.2s ease;
@@ -520,17 +510,8 @@ body {
 
 #cepotImg.happy,
 #cepotImg.sad {
-  width: clamp(90px, 18vw, 140px);
-  height: auto; /* biar proporsional */
-}
-
-/* Gambar Cepot */
-.cepot-img {
-  width: 180px;
+  width: clamp(100px, 14vw, 140px);
   height: auto;
-  max-width: 180px;
-  object-fit: contain;
-  transition: all 0.3s ease;
 }
 
 /* Bubble di atas kepala */
@@ -545,7 +526,8 @@ body {
   font-size: 0.9rem;
   max-width: 220px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,.15);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  word-wrap: break-word;
 }
 
 /* Animasi muncul */
