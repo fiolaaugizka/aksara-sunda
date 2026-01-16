@@ -1004,21 +1004,21 @@ const KONSONAN_SET = [
 function getKonsonan(key) {
   return cardsData.find(c =>
     c.type === "konsonan" &&
-    c.frontImg.toLowerCase().includes(`_${key}`)
+    c.frontImg.toLowerCase().endsWith(`_${key}.png`)
   );
 }
 
 function getVokal(key) {
   return cardsData.find(c =>
     c.type === "vokal" &&
-    c.frontImg.toLowerCase().includes(`_${key}`)
+    c.frontImg.toLowerCase().endsWith(`_${key}.png`)
   );
 }
 
 function getRarangken(name) {
   return cardsData.find(c =>
     c.type === "rarangken" &&
-    c.frontImg.toLowerCase().includes(`_${name}`)
+    c.frontImg.toLowerCase().endsWith(`_${name}.png`)
   );
 }
 
