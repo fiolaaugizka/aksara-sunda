@@ -1038,7 +1038,7 @@ function susunKata() {
 
   /* === PETA VOKAL → RARANGKEN === */
   const vokalMap = {
-    a: null,
+    a: "pamaeh",      // A diproses via rarangken
     i: "panghulu",
     u: "panyiku",
     e: "pamepet",
@@ -1059,12 +1059,54 @@ function susunKata() {
     while (i < kata.length) {
       const sisa = kata.slice(i);
 
-      /* === AKSARA SWARA (VOKAL BERDIRI) === */
+      /* === KONSONAN (PRIORITAS MAJEMUK) === */
+      const konsonanKey = KONSONAN_SET
+        .sort((a, b) => b.length - a.length)
+        .find(k => sisa.startsWith(k));
+
+      if (konsonanKey) {
+        const konsonan = getKonsonan(konsonanKey);
+        if (konsonan) {
+          const wrapper = document.createElement("div");
+          wrapper.className = "susun-card-wrapper";
+
+          const base = document.createElement("img");
+          base.src = konsonan.frontImg;
+          base.className = "susun-card";
+          wrapper.appendChild(base);
+          baris.appendChild(wrapper);
+
+          i += konsonanKey.length;
+          prevIsKonsonan = true;
+
+          /* === RARANGKEN (VOKAL SETELAH KONSONAN) === */
+          const vokalSetelah = Object.keys(vokalMap)
+            .sort((a, b) => b.length - a.length)
+            .find(v => kata.slice(i).startsWith(v));
+
+          if (vokalSetelah && vokalMap[vokalSetelah]) {
+            const r = getRarangken(vokalMap[vokalSetelah]);
+            if (r) {
+              const img = document.createElement("img");
+              img.src = r.frontImg;
+              img.className = "susun-rarangken";
+              wrapper.appendChild(img);
+            }
+            i += vokalSetelah.length;
+            prevIsKonsonan = false;
+          }
+
+          continue;
+        }
+      }
+
+      /* === VOKAL BERDIRI (i, u, e, é, eu, o) === */
       const vokalKey = Object.keys(vokalMap)
+        .filter(v => v !== "a") // A tidak diproses di sini
         .sort((a, b) => b.length - a.length)
         .find(v => sisa.startsWith(v));
 
-      if (vokalKey && (!prevIsKonsonan || vokalKey !== "a")) {
+      if (vokalKey && !prevIsKonsonan) {
         const vokal = getVokal(vokalKey);
         if (vokal) {
           const img = document.createElement("img");
@@ -1077,52 +1119,9 @@ function susunKata() {
         continue;
       }
 
-      /* === KONSONAN === */
-      const konsonanKey = KONSONAN_SET
-        .sort((a, b) => b.length - a.length)
-        .find(k => sisa.startsWith(k));
-
-      if (!konsonanKey) {
-        i++;
-        prevIsKonsonan = false;
-        continue;
-      }
-
-      const konsonan = getKonsonan(konsonanKey);
-      if (!konsonan) {
-        i++;
-        prevIsKonsonan = false;
-        continue;
-      }
-
-      const wrapper = document.createElement("div");
-      wrapper.className = "susun-card-wrapper";
-
-      const base = document.createElement("img");
-      base.src = konsonan.frontImg;
-      base.className = "susun-card";
-      wrapper.appendChild(base);
-      baris.appendChild(wrapper);
-
-      i += konsonanKey.length;
-      prevIsKonsonan = true;
-
-      /* === RARANGKEN (VOKAL SETELAH KONSONAN) === */
-      const vokalSetelah = Object.keys(vokalMap)
-        .sort((a, b) => b.length - a.length)
-        .find(v => kata.slice(i).startsWith(v));
-
-      if (vokalSetelah && vokalMap[vokalSetelah]) {
-        const r = getRarangken(vokalMap[vokalSetelah]);
-        if (r) {
-          const img = document.createElement("img");
-          img.src = r.frontImg;
-          img.className = "susun-rarangken";
-          wrapper.appendChild(img);
-        }
-        i += vokalSetelah.length;
-        prevIsKonsonan = false;
-      }
+      // Jika tidak ada yang cocok, skip 1 huruf
+      i++;
+      prevIsKonsonan = false;
     }
 
     hasil.appendChild(baris);
