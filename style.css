@@ -40,7 +40,7 @@ body {
 
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 999;
 }
 
 .logo {
@@ -91,6 +91,10 @@ body {
 /* =====================
    MOBILE NAV
 ===================== */
+/* ----- MOBILE NAV / TOGGLE ----- */
+  .desktop-nav { display: none; }
+  .menu-toggle { display: block; }
+
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
@@ -99,9 +103,11 @@ body {
 }
 
 .mobile-nav {
-  display: flex;
+  display: none;
   flex-direction: column;
-  padding: 12px;
+   gap: 12px;
+    padding: 20px;
+    width: 100%;
   background: linear-gradient(
     180deg,
     var(--brown-soft),
@@ -109,7 +115,25 @@ body {
   );
 }
 
-.mobile-nav a {
+.header.nav-open .mobile-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header.nav-open {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header.nav-open .logo,
+  .header.nav-open .menu-toggle {
+    display: none;
+  }
+
+  .mobile-nav a,
+  .mobile-play-btn {
+    text-align: center;
+    width: 100%;
   padding: 12px;
   border-radius: 16px;
   margin-bottom: 6px;
@@ -238,8 +262,10 @@ body {
 @media (max-width: 768px) {
   .cepot-wrapper {
     width: 110px;
+    height: auto;
     right: 10px;
     bottom: 10px;
+    min-height: unset;
   }
 
   .cepot-img {
@@ -250,27 +276,6 @@ body {
   .cepot-wrapper .bubble {
     font-size: 0.8rem;
     max-width: 180px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cepot-wrapper {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .cepot-img {
-    width: 90px;
-  }
-
-  .cepot-wrapper .bubble {
-    font-size: 0.75rem;
-    max-width: 150px;
-  }
-
-  #cepotImg {
-    width: 130px !important;
-    height: 130px !important;
   }
 }
 
@@ -1253,6 +1258,9 @@ body.quiz-lock {
 ================================ */
 @media (max-width: 768px) {
 
+  @media (max-width: 768px) {
+
+  /* ----- BACKGROUND MOBILE ----- */
   #cover {
     background-image: url("img/bg_hp1.png") !important;
     background-repeat: no-repeat;
@@ -1260,21 +1268,14 @@ body.quiz-lock {
     background-position: center bottom;
   }
 
-  .quiz-page {
-    background-image: url("img/bg_hp2.png") !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-
+  .quiz-page,
   .susun-page {
     background-image: url("img/bg_hp2.png") !important;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
-}
-
+     
 /* =====================
    FOOTER
 ===================== */
