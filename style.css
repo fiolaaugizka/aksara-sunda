@@ -1169,6 +1169,18 @@ body.quiz-lock {
   }
 }
 
+/* ===============================
+   FORCE MOBILE BACKGROUND
+   (WAJIB DI PALING BAWAH)
+================================ */
+@media (max-width: 768px) {
+  #cover {
+    background-image: url("img/bg_5_mobile.png") !important;
+    background-size: cover;
+    background-position: center bottom;
+  }
+}
+
 /* =====================
    FOOTER
 ===================== */
