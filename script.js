@@ -1038,7 +1038,7 @@ function susunKata() {
 
   /* === PETA VOKAL → RARANGKEN === */
   const vokalMap = {
-    a: "pamaeh", // A diproses via rarangken
+    a: null,        // A tidak pernah pakai rarangken
     i: "panghulu",
     u: "panyiku",
     e: "pamepet",
@@ -1055,13 +1055,13 @@ function susunKata() {
 
     let i = 0;
     let prevIsKonsonan = false;
-    let lastKonsonanWrapper = null; // untuk menempelkan rarangken
-    let lastKonsonanKey = null;     // simpan huruf konsonan terakhir
+    let lastKonsonanWrapper = null;
+    let lastKonsonanKey = null;
 
     while (i < kata.length) {
       const sisa = kata.slice(i);
 
-      /* === AKSARA SWARA (VOKAL BERDIRI) === */
+      /* === VOKAL BERDIRI (i,u,e,é,eu,o) === */
       const vokalKey = Object.keys(vokalMap)
         .filter(v => v !== "a") // A tidak diproses di sini
         .sort((a, b) => b.length - a.length)
@@ -1100,7 +1100,7 @@ function susunKata() {
           i += konsonanKey.length;
           prevIsKonsonan = true;
 
-          // simpan wrapper untuk rarangken
+          // simpan wrapper konsonan terakhir
           lastKonsonanWrapper = wrapper;
           lastKonsonanKey = konsonanKey;
           continue;
@@ -1112,11 +1112,12 @@ function susunKata() {
         .sort((a, b) => b.length - a.length)
         .find(v => kata.slice(i).startsWith(v));
 
+      // Hanya pasang rarangken jika: vokal bukan 'a' & wrapper konsonan ada
       if (
         vokalSetelah &&
         vokalMap[vokalSetelah] &&
         lastKonsonanWrapper &&
-        lastKonsonanKey[lastKonsonanKey.length - 1] !== "a" // jangan pasang rarangken jika konsonan berakhiran 'a'
+        vokalSetelah !== "a"
       ) {
         const r = getRarangken(vokalMap[vokalSetelah]);
         if (r) {
@@ -1127,13 +1128,11 @@ function susunKata() {
         }
         i += vokalSetelah.length;
         prevIsKonsonan = false;
-
-        // reset agar rarangken tidak menempel ke huruf berikutnya
         lastKonsonanWrapper = null;
         lastKonsonanKey = null;
       }
 
-      // jika tidak ada yang cocok, skip 1 huruf
+      // jika tidak cocok huruf apapun, skip 1 huruf
       if (!konsonanKey && !vokalKey && !vokalSetelah) {
         i++;
         prevIsKonsonan = false;
