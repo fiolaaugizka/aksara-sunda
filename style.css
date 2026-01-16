@@ -1181,6 +1181,31 @@ body.quiz-lock {
   }
 }
 
+@media (max-width: 768px) {
+  /* FORCE MOBILE BACKGROUND */
+  #cover {
+    background-image: url("img/bg_5_mobile.png") !important;
+  }
+
+  .quiz-page {
+    background-image: url("img/bg_3_mobile.png") !important;
+  }
+
+  .susun-page {
+    background-image: url("img/bg_4_mobile.png") !important;
+  }
+
+  /* FIX CEPOT POSITION */
+  .cepot-wrapper {
+    min-height: unset !important;
+    height: auto;
+    right: 10px;
+    bottom: 10px;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
 /* =====================
    FOOTER
 ===================== */
