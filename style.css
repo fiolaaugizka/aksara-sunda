@@ -40,7 +40,7 @@ body {
 
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .logo {
@@ -97,9 +97,10 @@ body {
 
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   cursor: pointer;
   color: #e6b97a;
+   z-index: 1001;
 }
 
 .mobile-nav {
