@@ -1038,7 +1038,7 @@ function susunKata() {
 
   /* === PETA VOKAL → RARANGKEN === */
   const vokalMap = {
-    a: "pamaeh",
+    a: null,
     i: "panghulu",
     u: "panyiku",
     e: "pamepet",
@@ -1064,7 +1064,7 @@ function susunKata() {
         .sort((a, b) => b.length - a.length)
         .find(v => sisa.startsWith(v));
 
-      if (vokalKey && !prevIsKonsonan) {
+      if (vokalKey && (!prevIsKonsonan || vokalKey !== "a")) {
         const vokal = getVokal(vokalKey);
         if (vokal) {
           const img = document.createElement("img");
