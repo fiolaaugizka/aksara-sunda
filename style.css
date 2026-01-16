@@ -1060,14 +1060,16 @@ body.quiz-lock {
 /* WRAPPER KARTU */
 .susun-card-wrapper {
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
+   max-width: 100%;
 }
 
 /* KARTU AKSARA UTAMA */
 .susun-card {
-  width: clamp(90px, 9vw, 130px);
+  width: clamp(60px, 15%, 130px)
+   max-width: 100%
   height: auto;
   padding: 14px;
   background: #ffffff;
@@ -1128,7 +1130,7 @@ body.quiz-lock {
   display: flex;
   gap: 10px;
   justify-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .susun-text {
@@ -1159,7 +1161,8 @@ body.quiz-lock {
 
 @media (max-width: 480px) {
   #hasilSusun {
-    padding: 22px 12px;
+    padding: 16px;
+     gap: 12px;
   }
 
   .susun-row {
@@ -1167,11 +1170,17 @@ body.quiz-lock {
   }
 
   .susun-card {
-    width: 82px;
+    width: clamp(60px, 22vw, 90px);
   }
 
   .susun-text {
     font-size: 14px;
+  }
+
+   .susun-rarangken {
+    width: clamp(24px, 10vw, 40px);
+    top: -16px;
+    right: -10px;
   }
 }
 
