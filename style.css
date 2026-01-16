@@ -503,19 +503,17 @@ body {
 }
 
 #cepotImg {
-  width: 100%;      /* desktop */
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
+  width: clamp(120px, 20vw, 180px); /* responsive */
+  height: auto;                      /* jaga proporsi */
   object-fit: contain;
   display: block;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, width 0.2s ease;
 }
 
 #cepotImg.happy,
 #cepotImg.sad {
-  width: 180px;
-  height: 180px;
+  width: clamp(140px, 22vw, 180px); /* sedikit lebih besar saat ekspresi berubah */
+  height: auto;
 }
 
 /* Gambar Cepot */
