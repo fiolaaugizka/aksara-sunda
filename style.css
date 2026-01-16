@@ -1239,6 +1239,23 @@ body.quiz-lock {
   }
 }
 
+/* ===============================
+   FIX MOBILE TOGGLE (WAJIB)
+================================ */
+@media (max-width: 768px) {
+
+  /* Mobile nav default TERTUTUP */
+  .mobile-nav {
+    display: none;
+  }
+
+  /* Muncul saat header punya class nav-open */
+  .header.nav-open .mobile-nav {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /* =====================
    FOOTER
 ===================== */
