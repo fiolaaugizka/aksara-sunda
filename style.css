@@ -520,7 +520,7 @@ body {
 
 #cepotImg.happy,
 #cepotImg.sad {
-  width: clamp(140px, 25vw, 160px);
+  width: clamp(90px, 18vw, 140px);
   height: auto; /* biar proporsional */
 }
 
