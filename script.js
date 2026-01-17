@@ -1036,15 +1036,16 @@ function susunKata() {
     return;
   }
 
-  /* === PETA VOKAL → RARANGKEN === */
+  /* === PETA VOKAL → RARANGKEN (SESUAI KAIDAH AKSARA SUNDA) === */
   const vokalMap = {
-    a: null,           // A = vokal inherent, tidak pakai rarangken
-    i: "panghulu",     // i → ᮤ
-    u: "panyiku",      // u → ᮥ
-    e: "pamepet",      // e → ᮦ (pepet)
-    é: "paneleng",     // é → ᮨ (taling)
-    eu: "paneuleung",  // eu → ᮩ
-    o: "panolong"      // o → ᮧ
+    a: null,           // A = vokal inherent (bawaan konsonan), tidak pakai rarangken
+    è: "pamaeh",       // è → ᮨ (pamaeh) - PENTING!
+    é: "paneleng",     // é → ᮩ (panèlèng/paneleng)
+    e: "pamepet",      // e → ᮦ (pepet/pamepet)
+    eu: "paneuleung",  // eu → ᮩ (paneuleung)
+    i: "panghulu",     // i → ᮤ (panghulu)
+    o: "panolong",     // o → ᮧ (panolong)
+    u: "panyiku"       // u → ᮥ (panyiku)
   };
 
   const kataList = input.split(/\s+/);
@@ -1112,7 +1113,7 @@ function susunKata() {
           .find(v => sisa.startsWith(v));
 
         if (vokalSetelah) {
-          // ✅ PERBAIKAN: 'a' = vokal inherent, tidak perlu rarangken
+          // ✅ 'a' = vokal inherent, tidak perlu rarangken
           if (vokalSetelah === "a") {
             i += 1; // skip 'a'
             prevIsKonsonan = false;
@@ -1120,7 +1121,7 @@ function susunKata() {
             continue;
           }
 
-          // Pasang rarangken untuk vokal selain 'a'
+          // ✅ Pasang rarangken untuk vokal selain 'a'
           const rarangkenName = vokalMap[vokalSetelah];
           if (rarangkenName) {
             const r = getRarangken(rarangkenName);
@@ -1138,9 +1139,42 @@ function susunKata() {
         }
       }
 
+      /* === CEK KONSONAN PENUTUP (PANYECEK) === */
+      if (prevIsKonsonan && lastKonsonanWrapper) {
+        // Cek konsonan penutup 'ng' → panyecek
+        if (sisa.startsWith("ng")) {
+          const r = getRarangken("panyecek");
+          if (r) {
+            const img = document.createElement("img");
+            img.src = r.frontImg;
+            img.className = "susun-rarangken";
+            lastKonsonanWrapper.appendChild(img);
+          }
+          i += 2;
+          prevIsKonsonan = false;
+          lastKonsonanWrapper = null;
+          continue;
+        }
+
+        // Cek sisipan 'r' → pamingkal
+        if (sisa.startsWith("r") && i + 1 < kata.length) {
+          const r = getRarangken("pamingkal");
+          if (r) {
+            const img = document.createElement("img");
+            img.src = r.frontImg;
+            img.className = "susun-rarangken";
+            lastKonsonanWrapper.appendChild(img);
+          }
+          i += 1;
+          // Tetap dalam mode konsonan untuk vokal berikutnya
+          continue;
+        }
+      }
+
       // ✅ FALLBACK: Skip karakter yang tidak dikenali
       i++;
       prevIsKonsonan = false;
+      lastKonsonanWrapper = null;
     }
 
     hasil.appendChild(baris);
@@ -1148,7 +1182,6 @@ function susunKata() {
 
   setCepotMessage("Inilah hasil tulisan Aksara Sunda nya ✨");
 }
-
 /* =====================
    AUTO SCROLL DARI QR
    (TAMBAHKAN DI SINI)
