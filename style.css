@@ -8,11 +8,29 @@
 }
 
 :root {
-  --brown-bold: #6b3f1d;
-  --yellow-soft: #e6b97a;
-  --brown-soft: #8a5a2b;
-  --accent: #ffe4b5;
-  --text-dark: #333;
+  /* BACKGROUND */
+  --bg-green-soft: #B7DB7A;
+  --bg-green: #8FCF6A;
+  --bg-blue-soft: #6FAEDC;
+  --bg-blue: #3F7BC8;
+
+  /* AKSEN */
+  --accent-cream: #F3F6D8;
+  --accent-white: #FFFFFF;
+
+  /* TEKS */
+  --text-dark: #23402A;
+  --text-soft: #4A6F5A;
+  --text-light: #F9FBF5;
+
+  /* BUTTON */
+  --btn-green: #7ACB6A;
+  --btn-blue: #4F8EDB;
+  --btn-hover: #5FAEE3;
+
+  /* BORDER / SHADOW */
+  --border-soft: rgba(0,0,0,0.08);
+  --shadow-soft: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 /* =====================
@@ -23,6 +41,13 @@ html {
 }
 
 body {
+  background: linear-gradient(
+    180deg,
+    var(--bg-green-soft) 0%,
+    var(--bg-green) 35%,
+    var(--bg-blue-soft) 70%,
+    var(--bg-blue) 100%
+  );
   font-family: "Comic Sans MS", "Poppins", sans-serif;
   color: var(--text-dark);
 }
@@ -35,7 +60,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  background: #6b3f1d;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -60,7 +87,7 @@ body {
 }
 
 .desktop-nav a:hover {
-  background: var(--yellow-soft);
+  background: var(--accent-cream);
 }
 
 /* HEADER BUTTON DESKTOP */
@@ -69,7 +96,12 @@ body {
   padding: 8px 18px;
   border-radius: 24px;
   border: none;
-  background: #e6b97a;
+  background: linear-gradient(
+    135deg,
+    var(--btn-green),
+    var(--btn-blue)
+  );
+  box-shadow: var(--shadow-soft);
   color: #fff;
   font-family: "Baloo 2", "Comic Sans MS", sans-serif;
   font-size: 0.95rem;
@@ -100,7 +132,11 @@ body {
   gap: 12px;
   padding: 20px;
   width: 100%;
-  background: linear-gradient(180deg, var(--brown-soft), var(--yellow-soft));
+  background: linear-gradient(
+    180deg,
+    var(--bg-green),
+    var(--bg-blue)
+  );
 }
 
 .header.nav-open .mobile-nav {
@@ -132,7 +168,11 @@ body {
   font-family: "Baloo 2", "Comic Sans MS", sans-serif;
   font-size: 1rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #6b3f1d, #e6b97a);
+  background: linear-gradient(
+  135deg,
+  var(--btn-green),
+  var(--btn-blue)
+);
   color: #fff;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
@@ -202,16 +242,19 @@ body {
    TABLET / MOBILE <= 768px
 ===================== */
 @media (max-width: 768px) {
+   .cepot-wrapper {
+    width: 120px;          /* tetap */
+    min-height: unset !important;     /* FIX */
+    height: auto;          /* FIX */
+    right: 10px;           /* tetap */
+    bottom: 10px;          /* tetap */
+    align-items: flex-end; /* tetap */
+    justify-content: flex-end; /* FIX */
+  }
+   
   .desktop-nav { display: none; }
   .menu-toggle { display: block; }
-
-  .cepot-wrapper {
-    width: 120px;
-    bottom: 10px;
-    right: 10px;
-    align-items: flex-end;
-  }
-
+   
   .cepot-img,
   #cepotImg {
     width: 90px;
@@ -440,7 +483,6 @@ body {
     #e6b73a 75%,
     #f0c94b 100%    /* bawah (rarangken) */
   );
-
   background-attachment: scroll;
 }
 
@@ -637,6 +679,19 @@ section {
   box-shadow: 0 14px 28px (#6b3f1d);
 }
 
+button,
+#startBtn,
+#startQuizBtn,
+.end-quiz-btn,
+#susunBtn {
+  background: linear-gradient(
+    135deg,
+    var(--btn-green),
+    var(--btn-blue)
+  );
+  color: white;
+}
+
 /* UKURAN MOBILE */
 @media (max-width: 480px) {
   #startBtn {
@@ -648,10 +703,6 @@ section {
 /* =====================
    GAME PAGE
 ===================== */
-html {
-  scroll-behavior: smooth;
-}
-
 .page {
   min-height: 100vh;
   padding: 90px 20px 40px;
@@ -770,7 +821,7 @@ body.quiz-lock {
   align-items: center;
   gap: 24px;
 
-  background-image: url("img/bg_3.png");
+  background-image: url("img/bg_4.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -781,7 +832,8 @@ body.quiz-lock {
   height: 220px;
   background: #ffffff;
   border-radius: 28px;
-  box-shadow: 0 12px 30px (#6b3f1d);
+  box-shadow: 0 12px 30px;
+   color: var(--text-dark);
 
   display: none;
   align-items: center;
@@ -1012,7 +1064,14 @@ body.quiz-lock {
   width: clamp(80px, 10vw, 120px);
   height: 70px;
   object-fit: contain;
-  background: #fff;
+  background: linear-gradient(
+    145deg,
+    #ffffffcc,
+    var(--accent-cream)
+  );
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-soft);
   padding: 14px;
   border-radius: 16px;
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
@@ -1060,7 +1119,14 @@ body.quiz-lock {
    max-width: 100%;
   height: auto;
   padding: 14px;
-  background: #ffffff;
+  background: linear-gradient(
+    145deg,
+    #ffffffcc,
+    var(--accent-cream)
+  );
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-soft);
   border-radius: 20px;
   box-shadow: 0 10px 22px rgba(0,0,0,0.18);
 }
@@ -1182,7 +1248,6 @@ body.quiz-lock {
     background-size: cover;
     background-position: center bottom;
   }
-}
 
   /* FIX CEPOT POSITION */
   .cepot-wrapper {
@@ -1255,10 +1320,6 @@ body.quiz-lock {
    FINAL MOBILE BACKGROUND FIX
 ================================ */
 @media (max-width: 768px) {
-
-  @media (max-width: 768px) {
-
-  /* ----- BACKGROUND MOBILE ----- */
   #cover {
     background-image: url("img/bg_hp1.png") !important;
     background-repeat: no-repeat;
@@ -1273,6 +1334,7 @@ body.quiz-lock {
     background-size: cover;
     background-position: center;
   }
+}
      
 /* =====================
    FOOTER
@@ -1285,9 +1347,10 @@ body.quiz-lock {
 
   background: linear-gradient(
     180deg,
-    #e6b97a,
-    #6b3f1d
+    var(--bg-green),
+    var(--bg-blue)
   );
+  color: var(--text-light);
 }
 
 .highlight {
