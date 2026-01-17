@@ -1012,7 +1012,7 @@ body.quiz-lock {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  flex-wrap: nowrap;
+  flex-wrap: wrap; /* <-- PERBAIKAN: dari nowrap → wrap */
   gap: 22px;
 }
 
@@ -1027,17 +1027,18 @@ body.quiz-lock {
 
 /* KARTU AKSARA UTAMA */
 .susun-card {
-  width: clamp(60px, 15%, 130px);
-  max-width: 100%;
+  flex: 1 1 clamp(60px, 12%, 130px); /* <-- PERBAIKAN: ukuran fleksibel responsive */
+  max-width: 130px;
+  min-width: 60px;
   padding: 14px;
-  background: linear-gradient(
-    145deg,
-    #ffffffcc,
-    var(--accent-cream)
-  );
+  background: linear-gradient(145deg, #ffffffcc, var(--accent-cream));
   border: 1px solid var(--border-soft);
   border-radius: 20px;
   box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 
 /* RARANGKEN */
@@ -1085,7 +1086,8 @@ body.quiz-lock {
   }
 
   .susun-card {
-    width: 90px;
+    flex: 1 1 90px; /* kartu menyesuaikan ruang di tablet */
+    max-width: 90px;
   }
 }
 
@@ -1100,7 +1102,8 @@ body.quiz-lock {
   }
 
   .susun-card {
-    width: clamp(60px, 22vw, 90px);
+    flex: 1 1 clamp(60px, 22vw, 90px); /* kartu menyesuaikan ruang di handphone kecil */
+    max-width: 90px;
   }
 
   .susun-text {
