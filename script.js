@@ -1037,15 +1037,14 @@ function susunKata() {
   }
 
   /* === PETA VOKAL → RARANGKEN === */
-  // ATURAN: Vokal 'a' = inherent (bawaan), TIDAK PAKAI RARANGKEN
   const vokalMap = {
-    é: "paneleng",     // é → paneleng  
-    e: "pamepet",      // e → pamepet
-    eu: "paneuleung",  // eu → paneuleung
-    i: "panghulu",     // i → panghulu
-    o: "panolong",     // o → panolong
-    u: "panyiku"       // u → panyiku
-    // 'a' TIDAK ADA di map → berarti skip tanpa rarangken
+    é: "paneleng",
+    e: "pamepet",
+    eu: "paneuleung",
+    i: "panghulu",
+    o: "panolong",
+    u: "panyiku"
+    // a → inherent
   };
 
   const kataList = input.split(/\s+/);
@@ -1061,10 +1060,9 @@ function susunKata() {
     while (i < kata.length) {
       const sisa = kata.slice(i);
 
-      /* === 1. CEK VOKAL BERDIRI (DI AWAL ATAU SETELAH VOKAL) === */
+      /* === 1. VOKAL BERDIRI === */
       if (!prevIsKonsonan) {
-        // Cek semua vokal termasuk 'a'
-        const vokalKeys = ['eu', 'è', 'é', 'e', 'i', 'o', 'u', 'a'];
+        const vokalKeys = ['eu', 'é', 'e', 'i', 'o', 'u', 'a'];
         const vokalKey = vokalKeys.find(v => sisa.startsWith(v));
 
         if (vokalKey) {
@@ -1076,13 +1074,11 @@ function susunKata() {
             baris.appendChild(img);
           }
           i += vokalKey.length;
-          prevIsKonsonan = false;
-          lastKonsonanWrapper = null;
           continue;
         }
       }
 
-      /* === 2. CEK KONSONAN === */
+      /* === 2. KONSONAN === */
       const konsonanKey = KONSONAN_SET
         .sort((a, b) => b.length - a.length)
         .find(k => sisa.startsWith(k));
@@ -1096,35 +1092,25 @@ function susunKata() {
           const base = document.createElement("img");
           base.src = konsonan.frontImg;
           base.className = "susun-card";
+
           wrapper.appendChild(base);
           baris.appendChild(wrapper);
 
-          i += konsonanKey.length;
           prevIsKonsonan = true;
           lastKonsonanWrapper = wrapper;
+          i += konsonanKey.length;
           continue;
         }
       }
 
-      /* === 3. CEK VOKAL SETELAH KONSONAN === */
+      /* === 3. VOKAL SETELAH KONSONAN === */
       if (prevIsKonsonan && lastKonsonanWrapper) {
-        // Cek vokal (termasuk 'a')
-        const vokalKeys = ['eu', 'è', 'é', 'e', 'i', 'o', 'u', 'a'];
+        const vokalKeys = ['eu', 'é', 'e', 'i', 'o', 'u', 'a'];
         const vokalSetelah = vokalKeys.find(v => sisa.startsWith(v));
 
         if (vokalSetelah) {
-          // ✅ JIKA 'a' → SKIP tanpa rarangken (vokal inherent)
-          if (vokalSetelah === 'a') {
-            i += 1;
-            prevIsKonsonan = false;
-            lastKonsonanWrapper = null;
-            continue;
-          }
-
-          // ✅ VOKAL SELAIN 'a' → PASANG RARANGKEN
-          const rarangkenName = vokalMap[vokalSetelah];
-          if (rarangkenName) {
-            const r = getRarangken(rarangkenName);
+          if (vokalSetelah !== 'a') {
+            const r = getRarangken(vokalMap[vokalSetelah]);
             if (r) {
               const img = document.createElement("img");
               img.src = r.frontImg;
@@ -1139,60 +1125,48 @@ function susunKata() {
         }
       }
 
-      /* === 4. CEK KONSONAN PENUTUP === */
-      if (prevIsKonsonan && lastKonsonanWrapper) {
-        // Panyecek untuk 'ng' penutup
-        if (sisa.startsWith("ng")) {
-          const r = getRarangken("panyecek");
-          if (r) {
-            const img = document.createElement("img");
-            img.src = r.frontImg;
-            img.className = "susun-rarangken";
-            lastKonsonanWrapper.appendChild(img);
-          }
-          i += 2;
-          prevIsKonsonan = false;
-          lastKonsonanWrapper = null;
-          continue;
+      /* === 4. KONSONAN PENUTUP NG === */
+      if (prevIsKonsonan && lastKonsonanWrapper && sisa.startsWith("ng")) {
+        const r = getRarangken("panyecek");
+        if (r) {
+          const img = document.createElement("img");
+          img.src = r.frontImg;
+          img.className = "susun-rarangken";
+          lastKonsonanWrapper.appendChild(img);
         }
-
-         /* === 5. PAMAÉH (KONSONAN MATI DI AKHIR KATA) === */
-if (prevIsKonsonan && lastKonsonanWrapper && i === kata.length) {
-  const pamaeh = getRarangken("pamaeh");
-  if (pamaeh) {
-    const img = document.createElement("img");
-    img.src = pamaeh.frontImg;
-    img.className = "susun-rarangken";
-    lastKonsonanWrapper.appendChild(img);
-  }
-
-  prevIsKonsonan = false;
-  lastKonsonanWrapper = null;
-  continue;
-}
-
-        // Pamingkal untuk 'r' sisipan
-        if (sisa.startsWith("r") && i + 1 < kata.length) {
-          const nextChar = kata[i + 1];
-          // Hanya pasang pamingkal jika setelah 'r' ada vokal/konsonan
-          if (nextChar && nextChar !== ' ') {
-            const r = getRarangken("pamingkal");
-            if (r) {
-              const img = document.createElement("img");
-              img.src = r.frontImg;
-              img.className = "susun-rarangken";
-              lastKonsonanWrapper.appendChild(img);
-            }
-            i += 1;
-            continue; // tetap mode konsonan
-          }
-        }
+        i += 2;
+        prevIsKonsonan = false;
+        lastKonsonanWrapper = null;
+        continue;
       }
 
-      // ✅ FALLBACK: Skip karakter tidak dikenali
+      /* === 5. PAMINGKAL (R SISIPAN) === */
+      if (prevIsKonsonan && lastKonsonanWrapper && sisa.startsWith("r")) {
+        const r = getRarangken("pamingkal");
+        if (r) {
+          const img = document.createElement("img");
+          img.src = r.frontImg;
+          img.className = "susun-rarangken";
+          lastKonsonanWrapper.appendChild(img);
+        }
+        i += 1;
+        continue;
+      }
+
       i++;
       prevIsKonsonan = false;
       lastKonsonanWrapper = null;
+    }
+
+    /* === FINAL CHECK: PAMAÉH === */
+    if (prevIsKonsonan && lastKonsonanWrapper) {
+      const pamaeh = getRarangken("pamaeh");
+      if (pamaeh) {
+        const img = document.createElement("img");
+        img.src = pamaeh.frontImg;
+        img.className = "susun-rarangken";
+        lastKonsonanWrapper.appendChild(img);
+      }
     }
 
     hasil.appendChild(baris);
