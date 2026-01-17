@@ -974,7 +974,7 @@ window.addEventListener("DOMContentLoaded", () => {
   console.log("APP READY ✅");
 });
 
-/* QUIZ GAME 2 */
+/* GAME 2 */
 document.getElementById("susunBtn")
   ?.addEventListener("click", susunKata);
 
@@ -1017,9 +1017,7 @@ function getVokal(key) {
 }
 
 function getRarangken(id) {
-  return cardsData.find(
-    c => c.type === "rarangken" && c.id === id
-  );
+  return cardsData.find(c => c.type === "rarangken" && c.id === id);
 }
 
 /* === MAIN === */
@@ -1045,6 +1043,16 @@ function susunKata() {
     o: "panolong",
     u: "panyiku"
     // a → inherent
+  };
+
+  /* === PERUBAHAN BUNYI DARI 'a' (WAJIB RARANGKEN) === */
+  const perubahanVokal = {
+    ai: "panghulu",
+    au: "panyiku",
+    ae: "pamepet",
+    aé: "paneleng",
+    ao: "panolong",
+    aeu: "paneuleung"
   };
 
   const kataList = input.split(/\s+/);
@@ -1078,7 +1086,49 @@ function susunKata() {
         }
       }
 
-      /* === 2. KONSONAN === */
+      /* === 2. PERUBAHAN VOKAL 'a' === */
+      const perubahanKey = Object.keys(perubahanVokal)
+        .sort((a, b) => b.length - a.length)
+        .find(k => sisa.startsWith(k));
+
+      if (prevIsKonsonan && lastKonsonanWrapper && perubahanKey) {
+        const r = getRarangken(perubahanVokal[perubahanKey]);
+        if (r) {
+          const img = document.createElement("img");
+          img.src = r.frontImg;
+          img.className = "susun-rarangken";
+          lastKonsonanWrapper.appendChild(img);
+        }
+        i += perubahanKey.length;
+        prevIsKonsonan = false;
+        lastKonsonanWrapper = null;
+        continue;
+      }
+
+      /* === 3. KONSONAN MATI → PAMAÉH === */
+      if (
+        prevIsKonsonan &&
+        lastKonsonanWrapper &&
+        i + 1 < kata.length &&
+        KONSONAN_SET.some(k => sisa.startsWith(k)) &&
+        !['a','i','u','e','é','o'].some(v => sisa.startsWith(v)) &&
+        !sisa.startsWith("ng") &&
+        !sisa.startsWith("r") &&
+        !perubahanKey
+      ) {
+        const pamaeh = getRarangken("pamaeh");
+        if (pamaeh) {
+          const img = document.createElement("img");
+          img.src = pamaeh.frontImg;
+          img.className = "susun-rarangken";
+          lastKonsonanWrapper.appendChild(img);
+        }
+        prevIsKonsonan = false;
+        lastKonsonanWrapper = null;
+        continue;
+      }
+
+      /* === 4. KONSONAN === */
       const konsonanKey = KONSONAN_SET
         .sort((a, b) => b.length - a.length)
         .find(k => sisa.startsWith(k));
@@ -1103,35 +1153,7 @@ function susunKata() {
         }
       }
 
-      /* === 3. VOKAL SETELAH KONSONAN === */
-       /* === PERUBAHAN BUNYI DARI 'a' (WAJIB RARANGKEN) === */
-const perubahanVokal = {
-  ai: "panghulu",
-  au: "panyiku",
-  ae: "pamepet",
-  aé: "paneleng",
-  ao: "panolong",
-  aeu: "paneuleung"
-};
-
-const perubahanKey = Object.keys(perubahanVokal)
-  .sort((a, b) => b.length - a.length)
-  .find(k => sisa.startsWith(k));
-
-if (perubahanKey) {
-  const r = getRarangken(perubahanVokal[perubahanKey]);
-  if (r) {
-    const img = document.createElement("img");
-    img.src = r.frontImg;
-    img.className = "susun-rarangken";
-    lastKonsonanWrapper.appendChild(img);
-  }
-  i += perubahanKey.length;
-  prevIsKonsonan = false;
-  lastKonsonanWrapper = null;
-  continue;
-}
-
+      /* === 5. VOKAL SETELAH KONSONAN === */
       if (prevIsKonsonan && lastKonsonanWrapper) {
         const vokalKeys = ['eu', 'é', 'e', 'i', 'o', 'u', 'a'];
         const vokalSetelah = vokalKeys.find(v => sisa.startsWith(v));
@@ -1153,7 +1175,7 @@ if (perubahanKey) {
         }
       }
 
-      /* === 4. KONSONAN PENUTUP NG === */
+      /* === 6. AKHIR NG === */
       if (prevIsKonsonan && lastKonsonanWrapper && sisa.startsWith("ng")) {
         const r = getRarangken("panyecek");
         if (r) {
@@ -1168,7 +1190,7 @@ if (perubahanKey) {
         continue;
       }
 
-      /* === 5. PAMINGKAL (R SISIPAN) === */
+      /* === 7. PAMINGKAL R === */
       if (prevIsKonsonan && lastKonsonanWrapper && sisa.startsWith("r")) {
         const r = getRarangken("pamingkal");
         if (r) {
@@ -1186,7 +1208,7 @@ if (perubahanKey) {
       lastKonsonanWrapper = null;
     }
 
-    /* === FINAL CHECK: PAMAÉH === */
+    /* === FINAL CHECK === */
     if (prevIsKonsonan && lastKonsonanWrapper) {
       const pamaeh = getRarangken("pamaeh");
       if (pamaeh) {
