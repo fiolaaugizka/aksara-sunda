@@ -195,32 +195,9 @@ body {
   display: none;
 }
 
-/* Judul game */
-.game-title {
-  text-align: center;
-  font-size: 1.9rem;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
 /* =====================
    CEPOT GUIDE RESPONSIVE FIX
 ===================== */
-
-/* Desktop default */
-.cepot-wrapper {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  width: 200px;
-  height: auto;
-  z-index: 50;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .cepot-img,
 #cepotImg {
   width: 200px;
@@ -230,26 +207,14 @@ body {
   transition: all 0.3s ease;
 }
 
-.cepot-wrapper .bubble {
-  font-size: 1.1rem;
-  max-width: 260px;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 /* =====================
    TABLET / MOBILE <= 768px
 ===================== */
 @media (max-width: 768px) {
    .cepot-wrapper {
-    width: 120px;          /* tetap */
-    min-height: unset !important;     /* FIX */
-    height: auto;          /* FIX */
-    right: 10px;           /* tetap */
-    bottom: 10px;          /* tetap */
-    align-items: flex-end; /* tetap */
-    justify-content: flex-end; /* FIX */
+    right: 10px;
+    bottom: 10px;
+    align-items: flex-end;
   }
    
   .desktop-nav { display: none; }
@@ -273,11 +238,6 @@ body {
     font-size: 0.85rem;
   }
 
-  /* Cards grid mobile */
-  .cards-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   /* Background & cover */
   #cover,
   #cards,
@@ -288,7 +248,7 @@ body {
 
   #cards {
     background-position: center center;
-    background-size: contain;
+    background-size: cover;
     background-attachment: scroll;
     padding-top: 45vh; /* beri ruang supaya konten tidak nutup foto */
   }
@@ -469,19 +429,12 @@ body {
 #cards {
   min-height: 100vh;
   padding: 100px 20px 60px;
-
-  background-image: none;     /* optional */
-  background-color: transparent;
-}
-
-#cards {
   background: linear-gradient(
     180deg,
-    #c96a1b 0%,     /* atas (vokal) */
-    #d07a22 30%,
-    #e2a32a 55%,    /* tengah (konsonan) */
-    #e6b73a 75%,
-    #f0c94b 100%    /* bawah (rarangken) */
+    var(--bg-green-soft) 0%,
+    var(--bg-green) 35%,
+    var(--bg-blue-soft) 70%,
+    var(--bg-blue) 100%
   );
   background-attachment: scroll;
 }
@@ -523,9 +476,9 @@ body {
   position: fixed;
   right: 16px;
   bottom: 16px;
-  width: 180px;      /* desktop default */
-  height: auto;      /* biar proporsional */
-  min-height: unset;  /* hapus min-height agar tidak loncat */
+  width: 180px;
+  height: auto;
+  min-height: unset;
   z-index: 50;
   pointer-events: none;
   display: flex;
@@ -660,12 +613,6 @@ section {
   border: none;
   margin-top: auto;
   margin-bottom: 40px;
-
-  background: linear-gradient(
-    135deg,
-    #6b3f1d,
-    #e6b97a
-  );
 
   color: #fff;
   cursor: pointer;
@@ -1043,41 +990,6 @@ body.quiz-lock {
   transform: scale(1.05);
 }
 
-/* Area hasil kartu */
-#hasilSusun {
-  margin-top: 24px;
-  padding: 16px;
-  width: 100%;
-  max-width: 600px;
-  min-height: 120px;
-  border-radius: 18px;
-  background: #fff8ef;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-  box-shadow: inset 0 0 0 2px #e2c9a6;
-}
-
-/* Kartu aksara */
-.susun-card {
-  width: clamp(80px, 10vw, 120px);
-  height: 70px;
-  object-fit: contain;
-  background: linear-gradient(
-    145deg,
-    #ffffffcc,
-    var(--accent-cream)
-  );
-  border-radius: 16px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-soft);
-  padding: 14px;
-  border-radius: 16px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-  animation: popIn 0.25s ease;
-}
-
 /* ===============================
    HASIL SUSUN – FINAL RAPi
 ================================ */
@@ -1116,16 +1028,13 @@ body.quiz-lock {
 /* KARTU AKSARA UTAMA */
 .susun-card {
   width: clamp(60px, 15%, 130px);
-   max-width: 100%;
-  height: auto;
+  max-width: 100%;
   padding: 14px;
   background: linear-gradient(
     145deg,
     #ffffffcc,
     var(--accent-cream)
   );
-  border-radius: 16px;
-  box-shadow: var(--shadow-soft);
   border: 1px solid var(--border-soft);
   border-radius: 20px;
   box-shadow: 0 10px 22px rgba(0,0,0,0.18);
@@ -1151,7 +1060,7 @@ body.quiz-lock {
 }
 
 /* Animasi muncul */
-@keyframes popIn {
+@keyframes popInSusun {
   from {
     transform: scale(0.6);
     opacity: 0;
@@ -1160,39 +1069,6 @@ body.quiz-lock {
     transform: scale(1);
     opacity: 1;
   }
-}
-
-/* BARIS PER KATA */
-#hasilSusun {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-}
-
-.susun-card-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  display: inline-flex;
-  margin: 6px;
-  justify-content: center;
-}
-
-.susun-row {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.susun-text {
-  margin-top: 6px;
-  font-size: 14px;
-  color: #6b3f1d;
-  font-weight: 600;
-  letter-spacing: 1px;
 }
 
 /* ===============================
@@ -1235,18 +1111,6 @@ body.quiz-lock {
     width: clamp(24px, 10vw, 40px);
     top: -16px;
     right: -10px;
-  }
-}
-
-/* ===============================
-   FORCE MOBILE BACKGROUND
-   (WAJIB DI PALING BAWAH)
-================================ */
-@media (max-width: 768px) {
-  #cover {
-    background-image: url("img/bg_5_mobile.png") !important;
-    background-size: cover;
-    background-position: center bottom;
   }
 
   /* FIX CEPOT POSITION */
