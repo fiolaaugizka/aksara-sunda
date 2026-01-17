@@ -1104,6 +1104,34 @@ function susunKata() {
       }
 
       /* === 3. VOKAL SETELAH KONSONAN === */
+       /* === PERUBAHAN BUNYI DARI 'a' (WAJIB RARANGKEN) === */
+const perubahanVokal = {
+  ai: "panghulu",
+  au: "panyiku",
+  ae: "pamepet",
+  aé: "paneleng",
+  ao: "panolong",
+  aeu: "paneuleung"
+};
+
+const perubahanKey = Object.keys(perubahanVokal)
+  .sort((a, b) => b.length - a.length)
+  .find(k => sisa.startsWith(k));
+
+if (perubahanKey) {
+  const r = getRarangken(perubahanVokal[perubahanKey]);
+  if (r) {
+    const img = document.createElement("img");
+    img.src = r.frontImg;
+    img.className = "susun-rarangken";
+    lastKonsonanWrapper.appendChild(img);
+  }
+  i += perubahanKey.length;
+  prevIsKonsonan = false;
+  lastKonsonanWrapper = null;
+  continue;
+}
+
       if (prevIsKonsonan && lastKonsonanWrapper) {
         const vokalKeys = ['eu', 'é', 'e', 'i', 'o', 'u', 'a'];
         const vokalSetelah = vokalKeys.find(v => sisa.startsWith(v));
