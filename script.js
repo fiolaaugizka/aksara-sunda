@@ -322,6 +322,7 @@ const cardsData = [
   },
   {
     id: "pamaeh",
+     rarangkenId: "pamaeh",
     label: "Aksara Rarangken",
     frontImg: "img/front_pamaeh.png",
     backImg: "img/back_pamaeh.png",
@@ -1015,10 +1016,9 @@ function getVokal(key) {
   );
 }
 
-function getRarangken(name) {
-  return cardsData.find(c =>
-    c.type === "rarangken" &&
-    c.frontImg.toLowerCase().includes(`_${name}`)
+function getRarangken(id) {
+  return cardsData.find(
+    c => c.type === "rarangken" && c.id === id
   );
 }
 
@@ -1039,7 +1039,6 @@ function susunKata() {
   /* === PETA VOKAL → RARANGKEN === */
   // ATURAN: Vokal 'a' = inherent (bawaan), TIDAK PAKAI RARANGKEN
   const vokalMap = {
-    è: "pamaeh",       // è → pamaeh
     é: "paneleng",     // é → paneleng  
     e: "pamepet",      // e → pamepet
     eu: "paneuleung",  // eu → paneuleung
@@ -1156,6 +1155,21 @@ function susunKata() {
           lastKonsonanWrapper = null;
           continue;
         }
+
+         /* === 5. PAMAÉH (KONSONAN MATI DI AKHIR KATA) === */
+if (prevIsKonsonan && lastKonsonanWrapper && i === kata.length) {
+  const pamaeh = getRarangken("pamaeh");
+  if (pamaeh) {
+    const img = document.createElement("img");
+    img.src = pamaeh.frontImg;
+    img.className = "susun-rarangken";
+    lastKonsonanWrapper.appendChild(img);
+  }
+
+  prevIsKonsonan = false;
+  lastKonsonanWrapper = null;
+  continue;
+}
 
         // Pamingkal untuk 'r' sisipan
         if (sisa.startsWith("r") && i + 1 < kata.length) {
