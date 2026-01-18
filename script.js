@@ -800,10 +800,20 @@ function startQuiz() {
   document.getElementById("cards")?.classList.add("cards-hidden");
 
   // UI
-  document.getElementById("startQuizBtn").classList.add("hidden");
-  document.getElementById("endQuizBtn").classList.remove("hidden");
-  document.getElementById("quizAksara").classList.remove("hidden");
-  document.getElementById("quizOptions").classList.remove("hidden");
+  // Ambil tombol
+const startBtn = document.getElementById("startQuizBtn");
+const endBtn = document.getElementById("endQuizBtn");
+
+// 🔒 KUNCI STATE QUIZ
+quizSection.classList.add("quiz-active");
+
+// ✅ HANYA SATU TOMBOL
+startBtn.classList.add("hidden");
+endBtn.classList.remove("hidden");
+
+// Tampilkan quiz
+document.getElementById("quizAksara").classList.remove("hidden");
+document.getElementById("quizOptions").classList.remove("hidden");
 
   // tampilkan quiz
   quizSection.classList.add("quiz-active");
@@ -941,10 +951,19 @@ function endQuizManual() {
   document.getElementById("cards")
     ?.classList.remove("cards-hidden");
 
-  document.getElementById("startQuizBtn").classList.remove("hidden");
-  document.getElementById("endQuizBtn").classList.add("hidden");
-  document.getElementById("quizAksara").classList.add("hidden");
-  document.getElementById("quizOptions").classList.add("hidden");
+  const startBtn = document.getElementById("startQuizBtn");
+const endBtn = document.getElementById("endQuizBtn");
+
+// 🔓 RESET STATE QUIZ
+quizSection.classList.remove("quiz-active");
+
+// ✅ KEMBALIKAN KE KONDISI AWAL
+startBtn.classList.remove("hidden");
+endBtn.classList.add("hidden");
+
+// Sembunyikan quiz
+document.getElementById("quizAksara").classList.add("hidden");
+document.getElementById("quizOptions").classList.add("hidden");
 
   quizSound.pause();
 quizSound.currentTime = 0;
@@ -965,10 +984,15 @@ window.addEventListener("DOMContentLoaded", () => {
   loadCard(currentCard);
 
    // 🔒 RESET UI QUIZ (INI KUNCINYA)
-  document.getElementById("endQuizBtn")?.classList.add("hidden");
-  document.getElementById("quizAksara")?.classList.add("hidden");
-  document.getElementById("quizOptions")?.classList.add("hidden");
-  document.getElementById("startQuizBtn")?.classList.remove("hidden");
+  const startBtn = document.getElementById("startQuizBtn");
+const endBtn = document.getElementById("endQuizBtn");
+const quizSection = document.getElementById("quiz");
+
+startBtn?.classList.remove("hidden");
+endBtn?.classList.add("hidden");
+document.getElementById("quizAksara")?.classList.add("hidden");
+document.getElementById("quizOptions")?.classList.add("hidden");
+quizSection?.classList.remove("quiz-active");
 
   startBtn?.addEventListener("click", startGame);
   playBtnHeader?.addEventListener("click", startGame);
