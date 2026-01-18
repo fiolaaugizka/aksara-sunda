@@ -88,28 +88,53 @@
 
 <!-- ================= QUIZ ================= -->
 <section id="quiz" class="page quiz-page section-bg bg-quiz">
+
   <!-- MUTE BUTTON -->
-<button id="muteQuizBtn" class="mute-btn" aria-label="Mute suara quiz">
-  🔊
-</button>
+  <button
+    id="muteQuizBtn"
+    class="mute-btn"
+    aria-label="Mute suara quiz">
+    🔊
+  </button>
 
   <h2 class="game-title">🧠 Tebak Huruf Aksara</h2>
 
+  <!-- SOAL QUIZ (SEMBUNYI DI AWAL) -->
   <div class="quiz-card">
-    <img id="quizAksara" class="quiz-aksara">
+    <img
+      id="quizAksara"
+      class="quiz-aksara hidden"
+      alt="Soal Aksara Quiz">
   </div>
 
-  <div class="quiz-options" id="quizOptions"></div>
+  <!-- OPSI JAWABAN (SEMBUNYI DI AWAL) -->
+  <div
+    class="quiz-options hidden"
+    id="quizOptions">
+  </div>
 
   <!-- SOUND QUIZ -->
-<audio id="quizSound" src="audio/quiz_sound.mp3" loop preload="auto"></audio>
+  <audio
+    id="quizSound"
+    src="audio/quiz_sound.mp3"
+    loop
+    preload="auto">
+  </audio>
 
   <p id="quizFeedback" class="quiz-feedback"></p>
-  <button id="startQuizBtn">Mulai Quiz</button>
 
-  <button id="endQuizBtn" class="end-quiz-btn hidden">
-  ⛔ Akhiri Quiz
-</button>
+  <!-- MULAI QUIZ (MUNCUL DI AWAL) -->
+  <button id="startQuizBtn">
+    Mulai Quiz
+  </button>
+
+  <!-- AKHIRI QUIZ (MUNCUL SETELAH QUIZ DIMULAI) -->
+  <button
+    id="endQuizBtn"
+    class="end-quiz-btn hidden">
+    ⛔ Akhiri Quiz
+  </button>
+
 </section>
 
 <!-- ================= SUSUN KATA ================= -->
@@ -124,7 +149,6 @@
   id="susunInput"
   type="text"
   maxlength="20"
-  oninput="batasiInputSunda(this)"
   placeholder="Maksimal 20 huruf"
 />
 
