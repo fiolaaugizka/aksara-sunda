@@ -873,7 +873,10 @@ body.quiz-lock {
   transform: scale(0.96);
 }
 
-#startQuizBtn {
+/* =========================
+   TOMBOL HALAMAN QUIZ
+========================= */
+body.quiz-page #startQuizBtn {
   margin-top: 20px;
   padding: 16px 34px;
 
@@ -884,21 +887,21 @@ body.quiz-lock {
   border-radius: 999px;
   border: none;
 
-  /* ✅ Perbaikan warna */
+  /* Warna sesuai tema terbaru */
   background: linear-gradient(180deg, #6b3f1d, #e6b97a) !important;
-  color: white !important;
-  box-shadow: 0 12px 30px (#e6b97a) !important;
+  color: #fff !important;
+  box-shadow: 0 12px 30px #e6b97a !important;
 
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-#startQuizBtn:hover {
+body.quiz-page #startQuizBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px (#e6b97a);
+  box-shadow: 0 16px 36px #e6b97a;
 }
 
-#startQuizBtn:active {
+body.quiz-page #startQuizBtn:active {
   transform: scale(0.95);
 }
 
@@ -925,7 +928,7 @@ body.quiz-lock {
   }
 }
 
-.end-quiz-btn {
+body.quiz-page .end-quiz-btn {
   margin-top: 10px;
   padding: 14px 28px;
 
@@ -936,20 +939,20 @@ body.quiz-lock {
   border-radius: 999px;
   border: none;
 
-  /* ✅ Perbaikan warna */
+  /* Warna sesuai tema terbaru */
   background: linear-gradient(180deg, #6b3f1d, #e6b97a) !important;
-  color: white !important;
-  box-shadow: 0 8px 20px (#e6b97a) !important;
-  cursor: pointer;
+  color: #fff !important;
+  box-shadow: 0 8px 20px #e6b97a !important;
 
+  cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.end-quiz-btn:hover {
+body.quiz-page .end-quiz-btn:hover {
   transform: translateY(-2px);
 }
 
-.end-quiz-btn:active {
+body.quiz-page .end-quiz-btn:active {
   transform: scale(0.95);
 }
 
