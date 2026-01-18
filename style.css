@@ -884,12 +884,8 @@ body.quiz-lock {
   border-radius: 999px;
   border: none;
 
-  background: linear-gradient(
-    180deg,
-    #6b3f1d,
-    #e6b97a
-  );
-
+  /* ✅ Perbaikan warna */
+  background: linear-gradient(180deg, #6b3f1d, #e6b97a);
   color: white;
   box-shadow: 0 12px 30px (#e6b97a);
 
@@ -940,9 +936,9 @@ body.quiz-lock {
   border-radius: 999px;
   border: none;
 
+  /* ✅ Perbaikan warna */
   background: linear-gradient(180deg, #6b3f1d, #e6b97a);
   color: white;
-
   box-shadow: 0 8px 20px (#e6b97a);
   cursor: pointer;
 
@@ -1002,11 +998,11 @@ body.quiz-lock {
   border: none;
   font-size: 1.1rem;
   font-weight: bold;
-  background: linear-gradient(135deg, #c59a6d, #a4723c);
+  background: linear-gradient(135deg, var(--btn-green), var(--btn-blue));
   color: #fff;
+  box-shadow: 0 8px 20px var(--btn-green);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 #susunBtn:hover {
@@ -1016,7 +1012,6 @@ body.quiz-lock {
 /* ===============================
    HALAMAN SUSUN KATA – HASIL SUSUN RESPONSIVE
 ================================ */
-
 /* Container hasil susun */
 #hasilSusun {
   width: 100%;
