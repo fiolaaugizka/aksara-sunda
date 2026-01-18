@@ -663,7 +663,6 @@ button,
   margin-bottom: 20px;
 }
 
-
 /* =====================
    GRID KARTU LAIN
 ===================== */
@@ -747,6 +746,29 @@ button,
   font-size: 1.4rem;
   text-align: center;
   color: #6b3f1d;
+}
+
+/* ===============================
+   TEKS GRID-CARD DARI DATA-LABEL (AMAN)
+================================ */
+.grid-card::after {
+  content: attr(data-label); /* ambil teks dari atribut data-label */
+  display: block;
+  margin-top: 6px;
+  font-weight: 700;
+  color: #6b3f1d;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .grid-card::after { font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+  .grid-card::after { font-size: 0.8rem; }
 }
 
 /* =========================
