@@ -964,6 +964,12 @@ window.addEventListener("DOMContentLoaded", () => {
   renderRarangkenMenu();
   loadCard(currentCard);
 
+   // 🔒 RESET UI QUIZ (INI KUNCINYA)
+  document.getElementById("endQuizBtn")?.classList.add("hidden");
+  document.getElementById("quizAksara")?.classList.add("hidden");
+  document.getElementById("quizOptions")?.classList.add("hidden");
+  document.getElementById("startQuizBtn")?.classList.remove("hidden");
+
   startBtn?.addEventListener("click", startGame);
   playBtnHeader?.addEventListener("click", startGame);
 
