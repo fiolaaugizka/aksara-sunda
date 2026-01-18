@@ -885,38 +885,34 @@ body.quiz-lock {
 /* =========================
    TOMBOL HALAMAN QUIZ (FINAL)
 ========================= */
-/* Start Quiz Button */
-body.quiz-page #startQuizBtn {
-  margin-top: 20px;
+/* START & END QUIZ = SUSUN BUTTON */
+body.quiz-page #startQuizBtn,
+body.quiz-page .end-quiz-btn {
+  margin-top: 6px;
+  padding: 14px 26px;
+  border-radius: 40px;
+  border: none;
 
   font-family: "Baloo 2", cursive;
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1.1rem;
+  font-weight: bold;
 
-  border-radius: 40px;
-  padding: 14px 26px;
-
-  /* Warna sesuai tombol Susun Kata */
   background: linear-gradient(135deg, var(--btn-green), var(--btn-blue)) !important;
   color: #fff !important;
 
-  /* Box shadow mirip tombol Susun Kata */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
-
+  box-shadow: 0 8px 20px var(--btn-green) !important;
   cursor: pointer;
+
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-   letter-spacing: 0.5px;
 }
 
-/* Hover Start Quiz */
-body.quiz-page #startQuizBtn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25) !important;
-   filter: brightness(1.05);
+body.quiz-page #startQuizBtn:hover,
+body.quiz-page .end-quiz-btn:hover {
+  transform: scale(1.05);
 }
 
-/* Active Start Quiz */
-body.quiz-page #startQuizBtn:active {
+body.quiz-page #startQuizBtn:active,
+body.quiz-page .end-quiz-btn:active {
   transform: scale(0.95);
 }
 
@@ -941,42 +937,6 @@ body.quiz-page #startQuizBtn:active {
   .quiz-options {
     grid-template-columns: 1fr;
   }
-}
-
-/* End Quiz Button */
-body.quiz-page .end-quiz-btn {
-  margin-top: 10px;
-
-  font-family: "Baloo 2", cursive;
-  font-size: 1.05rem;
-  font-weight: 700;
-
-  border-radius: 40px;
-  padding: 14px 26px;
-
-  /* Warna sesuai tombol Susun Kata */
-  background: linear-gradient(135deg, var(--btn-green), var(--btn-blue)) !important;
-  color: #fff !important;
-
-  /* Box shadow mirip tombol Susun Kata */
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2) !important;
-
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-   opacity: 0.9;
-}
-
-/* Hover End Quiz */
-body.quiz-page .end-quiz-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25) !important;
-   opacity: 1;
-  filter: brightness(1.03);
-}
-
-/* Active End Quiz */
-body.quiz-page .end-quiz-btn:active {
-  transform: scale(0.95);
 }
 
 /* ===============================
