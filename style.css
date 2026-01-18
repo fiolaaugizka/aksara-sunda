@@ -880,7 +880,6 @@ body.quiz-lock {
 /* =========================
    TOMBOL HALAMAN QUIZ (FINAL)
 ========================= */
-
 /* Start Quiz Button */
 body.quiz-page #startQuizBtn {
   margin-top: 20px;
@@ -890,8 +889,8 @@ body.quiz-page #startQuizBtn {
   font-size: 1.25rem;
   font-weight: 800;
 
-  border-radius: 999px; /* round/pill button */
-  border: none;
+  border-radius: 40px;
+  padding: 14px 26px;
 
   /* Warna sesuai tombol Susun Kata */
   background: linear-gradient(135deg, var(--btn-green), var(--btn-blue)) !important;
@@ -947,8 +946,8 @@ body.quiz-page .end-quiz-btn {
   font-size: 1.05rem;
   font-weight: 700;
 
-  border-radius: 999px; /* round/pill button */
-  border: none;
+  border-radius: 40px;
+  padding: 14px 26px;
 
   /* Warna sesuai tombol Susun Kata */
   background: linear-gradient(135deg, var(--btn-green), var(--btn-blue)) !important;
