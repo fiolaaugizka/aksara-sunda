@@ -124,6 +124,7 @@ body {
   cursor: pointer;
   color: var(--text-dark); /* sesuaikan dengan tema baru */
   z-index: 1001;
+   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .menu-toggle:hover {
@@ -150,6 +151,10 @@ body {
 .header.nav-open {
   flex-direction: column;
   align-items: stretch;
+}
+
+.header.nav-open .menu-toggle {
+  color: var(--btn-blue);
 }
 
 .mobile-nav a,
@@ -189,7 +194,7 @@ body {
 }
 
 .mobile-play-btn:active {
-  transform: scale(0.96);
+ transform: scale(0.9);
 }
 
 /* =====================
@@ -900,12 +905,14 @@ body.quiz-page #startQuizBtn {
 
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+   letter-spacing: 0.5px;
 }
 
 /* Hover Start Quiz */
 body.quiz-page #startQuizBtn:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25) !important;
+   filter: brightness(1.05);
 }
 
 /* Active Start Quiz */
@@ -956,12 +963,15 @@ body.quiz-page .end-quiz-btn {
 
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+   opacity: 0.9;
 }
 
 /* Hover End Quiz */
 body.quiz-page .end-quiz-btn:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25) !important;
+   opacity: 1;
+  filter: brightness(1.03);
 }
 
 /* Active End Quiz */
