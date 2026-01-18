@@ -122,8 +122,12 @@ body {
   display: none;
   font-size: 2rem;
   cursor: pointer;
-  color: #e6b97a;
+  color: #6b3f1d; /* ganti dari #e6b97a ke warna utama tema baru */
   z-index: 1001;
+}
+
+.menu-toggle:hover {
+  color: #e6b97a; /* warna kuning tema saat hover */
 }
 
 .mobile-nav {
@@ -157,7 +161,7 @@ body {
   margin-bottom: 6px;
   text-decoration: none;
   font-weight: 600;
-  color: var(--text-dark);
+  color: #6b3f1d; /* warna utama tema */
 }
 
 .mobile-play-btn {
@@ -890,7 +894,8 @@ body.quiz-page #startQuizBtn {
   /* Warna sesuai tema terbaru */
   background: linear-gradient(180deg, #6b3f1d, #e6b97a) !important;
   color: #fff !important;
-  box-shadow: 0 12px 30px #e6b97a !important;
+  /* Perbaikan box/grid agar lebih terlihat */
+box-shadow: 0 12px 30px rgba(230, 185, 122, 0.6) !important;
 
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -898,7 +903,7 @@ body.quiz-page #startQuizBtn {
 
 body.quiz-page #startQuizBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px #e6b97a;
+  box-shadow: 0 18px 36px rgba(230, 185, 122, 0.6) !important;
 }
 
 body.quiz-page #startQuizBtn:active {
@@ -942,7 +947,8 @@ body.quiz-page .end-quiz-btn {
   /* Warna sesuai tema terbaru */
   background: linear-gradient(180deg, #6b3f1d, #e6b97a) !important;
   color: #fff !important;
-  box-shadow: 0 8px 20px #e6b97a !important;
+  /* Perbaikan box/grid agar lebih terlihat */
+box-shadow: 0 12px 28px rgba(230, 185, 122, 0.6) !important;
 
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -950,6 +956,7 @@ body.quiz-page .end-quiz-btn {
 
 body.quiz-page .end-quiz-btn:hover {
   transform: translateY(-2px);
+   box-shadow: 0 16px 32px rgba(230, 185, 122, 0.6) !important;
 }
 
 body.quiz-page .end-quiz-btn:active {
