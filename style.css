@@ -706,6 +706,7 @@ button,
   display: block;
   margin-top: 6px;
   font-weight: 700;
+  color: #6b3f1d; /* beri warna teks yang terlihat di atas kartu */
 }
 
   .mini-card {
