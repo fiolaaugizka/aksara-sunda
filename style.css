@@ -991,11 +991,13 @@ body.quiz-lock {
 }
 
 /* ===============================
-   HASIL SUSUN – FINAL RAPi
+   HALAMAN SUSUN KATA – HASIL SUSUN RESPONSIVE
 ================================ */
+
+/* Container hasil susun */
 #hasilSusun {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px;       /* desktop maksimal */
   min-height: 200px;
   padding: 32px 24px;
   background: #fff8ef;
@@ -1007,29 +1009,29 @@ body.quiz-lock {
   box-shadow: inset 0 0 0 3px #e2c9a6;
 }
 
-/* BARIS PER KATA */
+/* Baris per kata */
 .susun-row {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  flex-wrap: wrap; /* <-- PERBAIKAN: dari nowrap → wrap */
-  gap: 22px;
+  flex-wrap: wrap;       /* desktop & mobile otomatis wrap */
+  gap: 22px;             /* jarak antar kartu desktop */
 }
 
-/* WRAPPER KARTU */
+/* Wrapper kartu */
 .susun-card-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-   max-width: 100%;
+  max-width: 100%;
 }
 
-/* KARTU AKSARA UTAMA */
+/* Kartu aksara utama – DESKTOP */
 .susun-card {
-  flex: 1 1 clamp(60px, 12%, 130px); /* <-- PERBAIKAN: ukuran fleksibel responsive */
-  max-width: 130px;
-  min-width: 60px;
+  flex: 1 1 clamp(80px, 12%, 140px);  /* desktop fleksibel */
+  max-width: 140px;
+  min-width: 80px;
   padding: 14px;
   background: linear-gradient(145deg, #ffffffcc, var(--accent-cream));
   border: 1px solid var(--border-soft);
@@ -1041,7 +1043,7 @@ body.quiz-lock {
   transition: transform 0.2s ease;
 }
 
-/* RARANGKEN */
+/* Rarangken (ikon tambahan di pojok) */
 .susun-rarangken {
   position: absolute;
   top: -22px;
@@ -1051,7 +1053,7 @@ body.quiz-lock {
   pointer-events: none;
 }
 
-/* TEKS LATIN DI BAWAH */
+/* Teks latin di bawah kartu */
 .susun-text {
   margin-top: 10px;
   font-size: 15px;
@@ -1060,7 +1062,7 @@ body.quiz-lock {
   letter-spacing: 1px;
 }
 
-/* Animasi muncul */
+/* Animasi muncul kartu */
 @keyframes popInSusun {
   from {
     transform: scale(0.6);
@@ -1073,7 +1075,7 @@ body.quiz-lock {
 }
 
 /* ===============================
-   RESPONSIVE
+   RESPONSIVE TABLET / MOBILE
 ================================ */
 @media (max-width: 768px) {
   #hasilSusun {
@@ -1086,7 +1088,7 @@ body.quiz-lock {
   }
 
   .susun-card {
-    flex: 1 1 90px; /* kartu menyesuaikan ruang di tablet */
+    flex: 1 1 90px;       /* tablet menyesuaikan ruang */
     max-width: 90px;
   }
 }
@@ -1094,7 +1096,7 @@ body.quiz-lock {
 @media (max-width: 480px) {
   #hasilSusun {
     padding: 16px;
-     gap: 12px;
+    gap: 12px;
   }
 
   .susun-row {
@@ -1102,7 +1104,7 @@ body.quiz-lock {
   }
 
   .susun-card {
-    flex: 1 1 clamp(60px, 22vw, 90px); /* kartu menyesuaikan ruang di handphone kecil */
+    flex: 1 1 clamp(60px, 22vw, 90px);  /* handphone */
     max-width: 90px;
   }
 
@@ -1110,13 +1112,13 @@ body.quiz-lock {
     font-size: 14px;
   }
 
-   .susun-rarangken {
+  .susun-rarangken {
     width: clamp(24px, 10vw, 40px);
     top: -16px;
     right: -10px;
   }
 
-  /* FIX CEPOT POSITION */
+  /* FIX CEPOT POSITION HANDPHONE */
   .cepot-wrapper {
     min-height: unset !important;
     height: auto;
