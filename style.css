@@ -916,6 +916,23 @@ body.quiz-page .end-quiz-btn:active {
   transform: scale(0.95);
 }
 
+/* ===============================
+   FIX SHAPE: QUIZ BUTTON = SUSUN BUTTON
+   AMAN & TERBATAS QUIZ PAGE
+================================ */
+body.quiz-page #startQuizBtn,
+body.quiz-page .end-quiz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  min-width: 200px;
+
+  padding: 14px 36px;
+  border-radius: 999px;
+}
+
 .quiz-feedback {
   font-size: 1.1rem;
   font-weight: 700;
