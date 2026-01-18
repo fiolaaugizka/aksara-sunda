@@ -913,11 +913,14 @@ body.quiz-page .quiz-btn:active {
 }
 
 /* =========================
-   START & END QUIZ BUTTON
-   (SUSUN SHAPE + THEME BARU)
+   FINAL QUIZ BUTTON OVERRIDE
+   AMAN & TERBATAS QUIZ PAGE
 ========================= */
-body.quiz-page #startQuizBtn,
-body.quiz-page .end-quiz-btn {
+body.quiz-page button#startQuizBtn,
+body.quiz-page button.end-quiz-btn {
+  all: unset;
+  box-sizing: border-box;
+
   margin-top: 10px;
   padding: 14px 36px;
   min-width: 200px;
@@ -931,7 +934,6 @@ body.quiz-page .end-quiz-btn {
   font-weight: 800;
 
   border-radius: 999px;
-  border: none;
 
   background: linear-gradient(
     135deg,
@@ -940,20 +942,20 @@ body.quiz-page .end-quiz-btn {
   );
   color: #fff;
 
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   cursor: pointer;
 
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-body.quiz-page #startQuizBtn:hover,
-body.quiz-page .end-quiz-btn:hover {
+body.quiz-page button#startQuizBtn:hover,
+body.quiz-page button.end-quiz-btn:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
 }
 
-body.quiz-page #startQuizBtn:active,
-body.quiz-page .end-quiz-btn:active {
+body.quiz-page button#startQuizBtn:active,
+body.quiz-page button.end-quiz-btn:active {
   transform: scale(0.95);
 }
 
@@ -984,6 +986,52 @@ body.quiz-page .quiz-feedback {
   body.quiz-page .quiz-options {
     grid-template-columns: 1fr;
   }
+}
+
+/* =========================
+   ⬇⬇⬇ TARUH DI SINI ⬇⬇⬇
+   HARD OVERRIDE QUIZ BUTTON
+========================= */
+body.quiz-page button#startQuizBtn,
+body.quiz-page button.end-quiz-btn {
+  all: unset;
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 36px;
+  min-width: 200px;
+
+  font-family: "Baloo 2", cursive;
+  font-size: 1.1rem;
+  font-weight: 800;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+    var(--btn-green),
+    var(--btn-blue)
+  );
+  color: #fff;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.quiz-page button#startQuizBtn:hover,
+body.quiz-page button.end-quiz-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+body.quiz-page button#startQuizBtn:active,
+body.quiz-page button.end-quiz-btn:active {
+  transform: scale(0.95);
 }
 
 /* ===============================
