@@ -985,6 +985,21 @@ section.quiz-page button.end-quiz-btn:active {
   transform: scale(0.95);
 }
 
+/* =========================
+   FINAL QUIZ BUTTON VISIBILITY FIX
+========================= */
+section.quiz-page button#endQuizBtn {
+  display: none; /* default disembunyikan */
+}
+
+section.quiz-page.quiz-active button#startQuizBtn {
+  display: none;
+}
+
+section.quiz-page.quiz-active button#endQuizBtn {
+  display: inline-flex;
+}
+
 /* ===============================
    HALAMAN SUSUN KATA
 ================================ */
